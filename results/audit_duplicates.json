@@ -1,0 +1,17 @@
+{
+  "duplicate_banglish_strings": 844,
+  "rows_involved": 1702,
+  "by_category": {
+    "punct_or_space_only": 634,
+    "near_identical_ge_0.9": 185,
+    "similar_0.6_0.9": 24,
+    "different_lt_0.6": 1
+  },
+  "label_conflicts_by_category": {
+    "punct_or_space_only": 17,
+    "near_identical_ge_0.9": 7,
+    "similar_0.6_0.9": 2,
+    "different_lt_0.6": 0
+  },
+  "mean_banglish_words": 23.3
+}
