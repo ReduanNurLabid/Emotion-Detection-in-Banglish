@@ -1,0 +1,22 @@
+# Environments
+.venv/
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Generated data and model artifacts
+data/cache/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# Raw per-run predictions can be large; summaries in results/ are kept
+results/**/preds_*.npy
+
+# Third-party paper full texts (copyright; keep local, see docs/literature/INDEX.md)
+docs/literature/papers/
+literature_review.zip
+
+# Blind label review: the key must not be visible to reviewers
+results/review/label_review_key.csv

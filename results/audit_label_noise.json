@@ -1,0 +1,35 @@
+{
+  "rows": 79888,
+  "oof_weighted_f1": 0.6193,
+  "oof_macro_f1": 0.6238,
+  "class_thresholds": {
+    "anger": 0.415,
+    "disgust": 0.454,
+    "fear": 0.588,
+    "joy": 0.695,
+    "sadness": 0.481,
+    "surprise": 0.539
+  },
+  "flagged_rows": 17715,
+  "flag_rate_upper_estimate": 0.2217,
+  "flag_rate_by_given_label": {
+    "anger": 0.302,
+    "disgust": 0.278,
+    "fear": 0.195,
+    "joy": 0.116,
+    "sadness": 0.25,
+    "surprise": 0.19
+  },
+  "top_flag_pairs": {
+    "sadness->anger": 2383,
+    "disgust->anger": 2330,
+    "anger->disgust": 2273,
+    "anger->sadness": 1690,
+    "sadness->disgust": 1023,
+    "disgust->sadness": 985,
+    "joy->sadness": 838,
+    "joy->anger": 703,
+    "surprise->sadness": 499,
+    "surprise->disgust": 475
+  }
+}

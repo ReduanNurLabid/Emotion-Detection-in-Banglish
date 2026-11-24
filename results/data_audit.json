@@ -1,0 +1,55 @@
+{
+  "seed": 42,
+  "raw_rows": 80098,
+  "raw_label_counts": {
+    "joy": 17837,
+    "sadness": 16310,
+    "anger": 15180,
+    "disgust": 13099,
+    "surprise": 10107,
+    "fear": 7565
+  },
+  "dropped_empty_banglish": 6,
+  "conflicting_banglish_strings": 26,
+  "dropped_conflict_rows": 55,
+  "rows_in_duplicate_banglish_groups": 1647,
+  "banglish_rows_with_bengali_chars": 731,
+  "banglish_token_stats": {
+    "vocab_size": 131585,
+    "tokens_with_count_ge_30": 4853
+  },
+  "near_duplicate_bengali_rows": 5028,
+  "dropped_bengali_conflict_rows": 149,
+  "final_rows": 79888,
+  "split_sizes": {
+    "train": 63910,
+    "val": 7990,
+    "test": 7988
+  },
+  "split_label_counts": {
+    "train": {
+      "anger": 12093,
+      "disgust": 10461,
+      "fear": 6046,
+      "joy": 14229,
+      "sadness": 13014,
+      "surprise": 8067
+    },
+    "val": {
+      "anger": 1512,
+      "disgust": 1308,
+      "fear": 756,
+      "joy": 1779,
+      "sadness": 1627,
+      "surprise": 1008
+    },
+    "test": {
+      "anger": 1511,
+      "disgust": 1308,
+      "fear": 755,
+      "joy": 1779,
+      "sadness": 1627,
+      "surprise": 1008
+    }
+  }
+}

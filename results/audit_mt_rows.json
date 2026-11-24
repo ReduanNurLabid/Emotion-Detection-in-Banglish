@@ -1,0 +1,44 @@
+{
+  "mt_style_rows": 1706,
+  "mt_style_label_counts": {
+    "fear": 1330,
+    "surprise": 355,
+    "anger": 20,
+    "sadness": 1
+  },
+  "share_of_class_mt_style": {
+    "anger": 0.001,
+    "disgust": 0.0,
+    "fear": 0.176,
+    "joy": 0.0,
+    "sadness": 0.0,
+    "surprise": 0.035
+  },
+  "rule_mt_style_to_fear": {
+    "precision": 0.78,
+    "recall_of_fear": 0.176
+  },
+  "tfidf_lr_bengali": {
+    "weighted_f1_all": 0.5993,
+    "macro_f1_all": 0.5995,
+    "macro_f1_without_mt_rows": 0.5886,
+    "fear_f1_all": 0.6731,
+    "fear_f1_without_mt_rows": 0.6079,
+    "fear_recall_on_mt_rows": 0.8782,
+    "fear_recall_on_other_rows": 0.5292,
+    "accuracy_on_mt_rows": 0.8333,
+    "accuracy_on_other_rows": 0.5929
+  },
+  "tfidf_lr_banglish": {
+    "weighted_f1_all": 0.609,
+    "macro_f1_all": 0.6072,
+    "macro_f1_without_mt_rows": 0.5945,
+    "fear_f1_all": 0.6697,
+    "fear_f1_without_mt_rows": 0.5968,
+    "fear_recall_on_mt_rows": 0.891,
+    "fear_recall_on_other_rows": 0.5042,
+    "accuracy_on_mt_rows": 0.8594,
+    "accuracy_on_other_rows": 0.6026
+  },
+  "test_mt_rows": 192
+}
