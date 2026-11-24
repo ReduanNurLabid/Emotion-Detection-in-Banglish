@@ -8,6 +8,7 @@
   :root { --bg: #12151b; --card: #1b2029; --text: #e8ebf0; --muted: #9aa3b2; --line: #2b313c; --primary: #5b8cff; }
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html, body { margin: 0; background: var(--bg); color: var(--text); }
 body { font-family: "Inter", "Noto Sans Bengali", system-ui, sans-serif; font-size: 16px; line-height: 1.5; -webkit-text-size-adjust: 100%; }
 .wrap { max-width: 640px; margin: 0 auto; padding: 16px 16px 40px; }
@@ -51,3 +52,10 @@ button.ghost { border: none; background: transparent; padding: 8px 10px; font-we
 .feedback { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-top: 12px; }
 .testbanner { background: var(--err); color: #fff; text-align: center; padding: 8px; font-weight: 600; position: sticky; top: 0; z-index: 5; }
 #fallback button { display: block; width: 100%; margin-top: 10px; }
+/* rewrite page */
+textarea { display: block; width: 100%; margin-top: 6px; padding: 12px; font: inherit; font-weight: 400; font-size: 1.05rem;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); resize: vertical; }
+.example { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .95em; }
+button.skip { width: 100%; margin-top: 10px; color: var(--muted); }
+.block-links a { display: block; padding: 14px; margin: 8px 0; border: 1px solid var(--line); border-radius: 12px; color: var(--text); text-decoration: none; background: var(--card); }

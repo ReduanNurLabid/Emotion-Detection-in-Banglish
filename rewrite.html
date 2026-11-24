@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Write it in Banglish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<div id="testbanner" class="testbanner" hidden>TEST MODE: answers are NOT being sent</div>
+<main id="app" class="wrap"><p class="muted">Loading…</p></main>
+
+<template id="tpl-pick">
+  <section class="card">
+    <h1>Write it in Banglish</h1>
+    <p>This study has 6 parts. Please open the link for <b>the part you were given</b>. If you don't know your part, ask the person who sent you the link.</p>
+    <div id="block-links" class="block-links"></div>
+  </section>
+</template>
+
+<template id="tpl-welcome">
+  <section class="card">
+    <h1>Write it in Banglish <span class="muted" id="w-block"></span></h1>
+    <p>We are a small research team studying how people really write Bangla in English letters (Banglish) on Facebook and YouTube. You will see <b><span id="w-n"></span> short Bangla comments</b>. For each one, type it in Banglish <b>exactly the way you would write it yourself</b> in a comment.</p>
+    <ul class="facts">
+      <li>⏱️ About <b>25–35 minutes</b>. You can stop and continue later <b>on the same phone and browser</b>.</li>
+      <li>✍️ There is no right or wrong spelling. We want <b>your</b> normal way of writing.</li>
+      <li>🙅 Please do it <b>yourself</b>: no AI tools, no transliteration apps, no copying from others.</li>
+      <li>🔒 Your name is only used to tell participants apart and will <b>not</b> be published.</li>
+      <li>⚠️ Some comments contain rude, political or religious content.</li>
+    </ul>
+    <label class="check"><input type="checkbox" id="consent"> I agree to take part, and I understand my answers will be used for research.</label>
+    <button class="primary" id="btn-start" disabled>Start</button>
+  </section>
+</template>
+
+<template id="tpl-profile">
+  <section class="card">
+    <h2>About you</h2>
+    <label class="field">Your name <input id="p-name" autocomplete="name" placeholder="e.g. Rahim Uddin"></label>
+    <label class="field">You are a…
+      <select id="p-role"><option value="">Choose</option><option>Undergraduate student</option><option>Graduate student</option><option>Teacher / researcher</option><option>Working professional</option><option>Other</option></select>
+    </label>
+    <label class="field">Is Bangla your first language?
+      <select id="p-native"><option value="">Choose</option><option>Yes</option><option>No</option></select>
+    </label>
+    <label class="field">How often do you write Banglish (in chats, comments, posts)?
+      <select id="p-freq"><option value="">Choose</option><option>Every day</option><option>Every week</option><option>Rarely</option><option>Never</option></select>
+    </label>
+    <label class="field">Phone keyboard you are using
+      <select id="p-kbd"><option value="">Choose</option><option>Gboard (Google)</option><option>iPhone keyboard</option><option>Samsung keyboard</option><option>Other</option><option>Not on a phone</option></select>
+    </label>
+    <label class="check"><input type="checkbox" id="p-alone"> I will write everything myself, without AI tools or transliteration apps.</label>
+    <p id="p-err" class="err" hidden>Please fill in every field and tick the box.</p>
+    <button class="primary" id="btn-profile">Continue</button>
+  </section>
+</template>
+
+<template id="tpl-guide">
+  <section class="card guide">
+    <h2>How to write</h2>
+    <p>Read the Bangla comment, then type it in English letters <b>the way you normally write Banglish</b>.</p>
+    <div class="example">
+      <p class="bn">আমি আমার গার্লফ্রেন্ডের জন্মদিনে আমার বোনের ডায়মন্ডের রিংটা চুরি করে গিফট দিয়ে দিছি</p>
+      <p>✅ <span class="mono">ami amar girlfriend er jonmodine amar boner diamond er ring ta churi kore gift diye disi</span></p>
+    </div>
+    <h3>Tips</h3>
+    <ol class="rules">
+      <li><b>Your own style.</b> Short forms are fine (e.g. <span class="mono">ki koro</span>, <span class="mono">valo</span>, <span class="mono">bhalo</span>, <span class="mono">dc</span>) if that's how you write.</li>
+      <li><b>English words:</b> write them the way you normally do (e.g. <span class="mono">video</span>, <span class="mono">gift</span>).</li>
+      <li><b>Don't translate</b> the comment into English. Keep it Bangla, in English letters.</li>
+      <li><b>Keep the meaning.</b> Don't add or remove ideas. Fixing obvious typos is fine.</li>
+      <li>Emojis and punctuation: keep them if you would.</li>
+      <li><b>Autocorrect:</b> if your keyboard changes Banglish words into English words, please turn autocorrect off for a while (Gboard: Settings → Text correction → Auto-correction).</li>
+      <li>If you truly can't write a comment, tap <b>Can't write this one</b>.</li>
+    </ol>
+    <button class="primary" id="btn-practice">Try 2 practice comments</button>
+  </section>
+</template>
+
+<template id="tpl-item">
+  <section class="item">
+    <div class="topbar">
+      <button class="ghost" id="btn-back" aria-label="Previous">‹ Back</button>
+      <div class="progress"><div class="bar"><div id="bar-fill"></div></div><span id="counter"></span></div>
+      <button class="ghost" id="btn-help" aria-label="Help">?</button>
+    </div>
+    <div class="card text-card">
+      <p id="practice-tag" class="practice-tag" hidden>Practice</p>
+      <p class="bn" id="t-bn"></p>
+    </div>
+    <label class="field">Write it in Banglish:
+      <textarea id="answer" rows="4" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="type here…"></textarea>
+    </label>
+    <p id="warn" class="err" hidden></p>
+    <button class="primary" id="btn-next">Next</button>
+    <button id="btn-skip" class="skip">Can't write this one</button>
+    <p id="feedback" class="feedback" hidden></p>
+  </section>
+</template>
+
+<template id="tpl-done">
+  <section class="card">
+    <h2>Thank you! 🎉</h2>
+    <p id="sync-status">Sending your answers…</p>
+    <div id="fallback" hidden>
+      <p class="err">We could not confirm that all answers reached us. Please tap <b>Try again</b>. If it still fails, tap <b>Download</b> (or <b>Copy</b>) and send it to the person who shared this link.</p>
+      <button class="primary" id="btn-retry">Try again</button>
+      <button id="btn-download">Download my answers</button>
+      <button id="btn-copy">Copy my answers</button>
+    </div>
+  </section>
+</template>
+
+<script src="config.js?v=2"></script>
+<script src="rewrite.js?v=1"></script>
+</body>
+</html>
