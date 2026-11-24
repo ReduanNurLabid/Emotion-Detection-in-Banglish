@@ -1,0 +1,53 @@
+:root {
+  --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #667085; --line: #e3e6ec;
+  --primary: #1f5eff; --primary-text: #fff; --err: #c62828;
+  --anger: #d64545; --disgust: #7a5c2e; --fear: #6b4fbb; --joy: #e0a800; --sadness: #2f6fb0; --surprise: #11998e;
+  --neutral: #6b7280; --unclear: #9ca3af;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #12151b; --card: #1b2029; --text: #e8ebf0; --muted: #9aa3b2; --line: #2b313c; --primary: #5b8cff; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font-family: "Inter", "Noto Sans Bengali", system-ui, sans-serif; font-size: 16px; line-height: 1.5; -webkit-text-size-adjust: 100%; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 16px 16px 40px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 14px; }
+h1 { font-size: 1.4rem; margin: 0 0 10px; } h2 { font-size: 1.25rem; margin: 0 0 10px; } h3 { margin: 16px 0 6px; font-size: 1.05rem; }
+.muted { color: var(--muted); }
+.facts { padding-left: 0; list-style: none; } .facts li { margin: 8px 0; }
+button { font: inherit; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--text); padding: 12px 16px; cursor: pointer; }
+button.primary { background: var(--primary); color: var(--primary-text); border-color: var(--primary); width: 100%; margin-top: 14px; font-weight: 600; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.ghost { border: none; background: transparent; padding: 8px 10px; font-weight: 600; }
+.check { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0; }
+.check input { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+.field { display: block; margin: 12px 0; font-weight: 600; }
+.field input, .field select { display: block; width: 100%; margin-top: 6px; padding: 12px; font: inherit; font-weight: 400; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); }
+.err { color: var(--err); }
+.labels-explained div { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.labels-explained i { color: var(--muted); font-style: normal; }
+.lab { display: inline-block; padding: 2px 8px; border-radius: 999px; color: #fff; margin-right: 6px; font-size: .9rem; }
+.lab.anger { background: var(--anger); } .lab.disgust { background: var(--disgust); } .lab.fear { background: var(--fear); }
+.lab.joy { background: var(--joy); color: #1d2330; } .lab.sadness { background: var(--sadness); } .lab.surprise { background: var(--surprise); }
+.lab.neutral { background: var(--neutral); } .lab.unclear { background: var(--unclear); color: #1d2330; }
+.rules li { margin: 6px 0; }
+.topbar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; position: sticky; top: 0; background: var(--bg); padding: 6px 0; z-index: 2; }
+.progress { flex: 1; display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); }
+.bar { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+#bar-fill { height: 100%; width: 0; background: var(--primary); transition: width .2s; }
+.text-card { min-height: 120px; }
+.bn { font-family: "Noto Sans Bengali", sans-serif; font-size: 1.2rem; line-height: 1.7; margin: 0 0 10px; word-wrap: break-word; }
+.bl { color: var(--muted); font-size: .98rem; margin: 0; word-wrap: break-word; }
+.practice-tag { display: inline-block; margin: 0 0 8px; font-size: .8rem; font-weight: 600; color: var(--primary); }
+.unsure { justify-content: flex-end; margin: 4px 0 8px; color: var(--muted); }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.choices button { padding: 14px 8px; font-weight: 600; border-width: 2px; min-height: 58px; }
+.choices button small { display: block; font-weight: 400; font-family: "Noto Sans Bengali", sans-serif; }
+.choices button.wide { grid-column: span 1; }
+.choices button.selected { outline: 3px solid var(--primary); outline-offset: 1px; }
+.c-anger { border-color: var(--anger); } .c-disgust { border-color: var(--disgust); } .c-fear { border-color: var(--fear); }
+.c-joy { border-color: var(--joy); } .c-sadness { border-color: var(--sadness); } .c-surprise { border-color: var(--surprise); }
+.c-neutral, .c-unclear { border-color: var(--line); color: var(--muted); }
+.feedback { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-top: 12px; }
+.testbanner { background: var(--err); color: #fff; text-align: center; padding: 8px; font-weight: 600; position: sticky; top: 0; z-index: 5; }
+#fallback button { display: block; width: 100%; margin-top: 10px; }

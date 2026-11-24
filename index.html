@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bangla Emotion Labeling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<div id="testbanner" class="testbanner" hidden>TEST MODE: answers are NOT being sent</div>
+<main id="app" class="wrap"><p class="muted">Loading…</p></main>
+
+<template id="tpl-welcome">
+  <section class="card">
+    <h1>Help us label emotions in Bangla comments</h1>
+    <p>We are researchers at BRAC University building a dataset for emotion detection in Bangla and Banglish. You will read <b>206 short social-media comments</b> and choose the emotion each writer is expressing.</p>
+    <ul class="facts">
+      <li>⏱️ About <b>30–40 minutes</b>. You can stop and come back later <b>on the same phone and browser</b>; your progress is saved.</li>
+      <li>📱 Works on your phone. One tap per comment.</li>
+      <li>🙅 Please label <b>alone</b>, <b>without AI tools</b> (ChatGPT, etc.) and <b>without asking others</b>. We need your own judgement.</li>
+      <li>🔒 Your name is only used to tell annotators apart. It will <b>not</b> be published; the paper will use codes like A1, A2.</li>
+      <li>⚠️ Some comments contain rude, political or religious content.</li>
+    </ul>
+    <label class="check"><input type="checkbox" id="consent"> I agree to take part, and I understand my answers will be used for research.</label>
+    <button class="primary" id="btn-start" disabled>Start</button>
+  </section>
+</template>
+
+<template id="tpl-profile">
+  <section class="card">
+    <h2>About you</h2>
+    <label class="field">Your name <input id="p-name" autocomplete="name" placeholder="e.g. Rahim Uddin"></label>
+    <label class="field">You are a…
+      <select id="p-role"><option value="">Choose</option><option>Undergraduate student</option><option>Graduate student</option><option>Teacher / researcher</option><option>Working professional</option><option>Other</option></select>
+    </label>
+    <label class="field">Is Bangla your first language?
+      <select id="p-native"><option value="">Choose</option><option>Yes</option><option>No</option></select>
+    </label>
+    <label class="field">How easily do you read Banglish (Bangla in English letters)?
+      <select id="p-banglish"><option value="">Choose</option><option>Very easily</option><option>Somewhat easily</option><option>With difficulty</option></select>
+    </label>
+    <label class="check"><input type="checkbox" id="p-alone"> I will label on my own, without AI tools and without discussing the comments with anyone.</label>
+    <p id="p-err" class="err" hidden>Please fill in every field and tick the box.</p>
+    <button class="primary" id="btn-profile">Continue</button>
+  </section>
+</template>
+
+<template id="tpl-guide">
+  <section class="card guide">
+    <h2>How to label</h2>
+    <p>For each comment, choose the <b>one emotion the writer is mainly expressing</b>. The Bangla text is the original; the Banglish line below is the same comment in English letters.</p>
+    <div class="labels-explained">
+      <div><b class="lab anger">Anger · রাগ</b> angry, outraged, blaming, attacking someone. <i>“এদের বিচার চাই”</i></div>
+      <div><b class="lab disgust">Disgust · ঘৃণা/বিরক্তি</b> revulsion, contempt, “this is gross / shameful / cheap”. <i>“ছি, কী নোংরা”</i></div>
+      <div><b class="lab fear">Fear · ভয়/দুশ্চিন্তা</b> fear, worry, anxiety about something that may happen. <i>“খুব ভয় লাগছে”</i></div>
+      <div><b class="lab joy">Joy · আনন্দ/ভালোবাসা</b> happiness, love, praise, pride, gratitude, good wishes. <i>“অসাধারণ গান”</i></div>
+      <div><b class="lab sadness">Sadness · দুঃখ</b> grief, disappointment, missing someone, pity. <i>“চোখে পানি চলে এলো”</i></div>
+      <div><b class="lab surprise">Surprise · বিস্ময়</b> astonishment, shock (good or bad). <i>“কী বলেন! জানতামই না”</i></div>
+      <div><b class="lab neutral">No clear emotion</b> a question, information, request, or no emotion at all.</div>
+      <div><b class="lab unclear">Can't understand</b> you really cannot understand the comment.</div>
+    </div>
+    <h3>Rules</h3>
+    <ol class="rules">
+      <li><b>The writer's emotion</b>, not how the comment makes you feel.</li>
+      <li><b>Several emotions?</b> Pick the strongest one.</li>
+      <li><b>Sarcasm:</b> label what they really mean. “বাহ, আবার কারেন্ট নেই, দারুণ সেবা!” → <b>Anger</b>, not Joy.</li>
+      <li><b>Anger vs Disgust:</b> anger = hostile, wants punishment or blames. Disgust = finds it gross, shameful or contemptible.</li>
+      <li><b>Sadness vs Fear:</b> sadness = about something that happened. Fear = about something that might happen.</li>
+      <li>Emojis help, but the words decide.</li>
+      <li><b>Don't overthink:</b> about 10 seconds each. If unsure, choose your best guess and tick <b>“Not sure”</b>.</li>
+      <li>A few comments appear twice on purpose. Just label them again.</li>
+    </ol>
+    <button class="primary" id="btn-practice">Try 4 practice comments</button>
+  </section>
+</template>
+
+<template id="tpl-item">
+  <section class="item">
+    <div class="topbar">
+      <button class="ghost" id="btn-back" aria-label="Previous">‹ Back</button>
+      <div class="progress"><div class="bar"><div id="bar-fill"></div></div><span id="counter"></span></div>
+      <button class="ghost" id="btn-help" aria-label="Help">?</button>
+    </div>
+    <div class="card text-card">
+      <p id="practice-tag" class="practice-tag" hidden>Practice</p>
+      <p class="bn" id="t-bn"></p>
+      <p class="bl" id="t-bl"></p>
+    </div>
+    <label class="check unsure"><input type="checkbox" id="unsure"> Not sure</label>
+    <div class="choices" id="choices"></div>
+    <p id="feedback" class="feedback" hidden></p>
+  </section>
+</template>
+
+<template id="tpl-done">
+  <section class="card">
+    <h2>Thank you! 🎉</h2>
+    <p id="sync-status">Sending your answers…</p>
+    <div id="fallback" hidden>
+      <p class="err">We could not confirm that all answers reached us. Please tap <b>Try again</b>. If it still fails, tap <b>Download</b> (or <b>Copy</b>) and send the file/text to the person who shared this link.</p>
+      <button class="primary" id="btn-retry">Try again</button>
+      <button id="btn-download">Download my answers</button>
+      <button id="btn-copy">Copy my answers</button>
+    </div>
+  </section>
+</template>
+
+<script src="config.js?v=2"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>
